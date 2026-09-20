@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      @keyframes floatIcon {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+      @keyframes pulseNode {
+        0%, 100% { stroke: #52525b; }
+        50% { stroke: #ffffff; }
+      }
+      .container { animation: floatIcon 3.5s ease-in-out infinite 0.3s; }
+      .node-hex { animation: pulseNode 3s ease-in-out infinite; }
+    </style>
+  </defs>
+  <g class="container">
+    <rect width="64" height="64" rx="14" fill="#09090b" stroke="#27272a" stroke-width="1.2" />
+    <rect x="4" y="4" width="56" height="56" rx="10" fill="#121214" />
+    
+    <!-- Node.js Hexagon Logo -->
+    <path class="node-hex" fill="#18181b" stroke="#71717a" stroke-width="1.5" d="M32 17l11 6.3v12.4L32 42l-11-6.3V23.3z" />
+    <circle cx="32" cy="29.5" r="3" fill="#ffffff" />
+    <path fill="#ffffff" d="M32 20v6.5m-5.5 3.2l5.5-3.2m5.5 3.2l-5.5-3.2" stroke="#ffffff" stroke-width="1.2" />
+    
+    <!-- Label -->
+    <text x="32" y="52" text-anchor="middle" font-family="'SF Mono', 'Geist Mono', monospace" font-size="7" font-weight="600" fill="#71717a" letter-spacing="1">NODE.JS</text>
+  </g>
+</svg>

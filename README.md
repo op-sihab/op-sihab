@@ -48,16 +48,34 @@ Standard: High performance, zero-bloat, clean design systems
 
 ---
 
-### Animated Stack & Runtimes
+### Core Architecture & Animated Runtimes
 
 <div align="center">
-  <img src="./assets/tech-stack.svg" width="100%" alt="Animated Tech Stack" />
-</div>
 
-<br/>
+  <!-- Row 1: Languages & Frontend -->
+  <img src="./assets/icons/typescript.svg" width="62" height="62" alt="TypeScript" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/javascript.svg" width="62" height="62" alt="JavaScript" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/python.svg" width="62" height="62" alt="Python" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/react.svg" width="62" height="62" alt="React" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/nextjs.svg" width="62" height="62" alt="Next.js" />
 
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=ts,js,python,react,nextjs,tailwind,nodejs,postgres,docker,git&theme=dark" alt="Tech Icons" />
+  <br/><br/>
+
+  <!-- Row 2: Backend, Database & Infrastructure -->
+  <img src="./assets/icons/nodejs.svg" width="62" height="62" alt="Node.js" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/tailwind.svg" width="62" height="62" alt="Tailwind CSS" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/postgresql.svg" width="62" height="62" alt="PostgreSQL" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/docker.svg" width="62" height="62" alt="Docker" />
+  &nbsp;&nbsp;
+  <img src="./assets/icons/git.svg" width="62" height="62" alt="Git" />
+
 </div>
 
 ---

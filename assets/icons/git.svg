@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      @keyframes floatIcon {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+      @keyframes branchPulse {
+        0%, 100% { fill: #a1a1aa; }
+        50% { fill: #ffffff; }
+      }
+      .container { animation: floatIcon 3.5s ease-in-out infinite 1.8s; }
+      .branch-node { animation: branchPulse 2.5s ease-in-out infinite; }
+    </style>
+  </defs>
+  <g class="container">
+    <rect width="64" height="64" rx="14" fill="#09090b" stroke="#27272a" stroke-width="1.2" />
+    <rect x="4" y="4" width="56" height="56" rx="10" fill="#121214" />
+    
+    <!-- Git Branch Visual -->
+    <circle class="branch-node" cx="26" cy="22" r="3" fill="#ffffff" />
+    <circle cx="26" cy="36" r="3" fill="#ffffff" />
+    <circle class="branch-node" cx="38" cy="26" r="3" fill="#ffffff" />
+    <line x1="26" y1="25" x2="26" y2="33" stroke="#ffffff" stroke-width="1.5" />
+    <path d="M26 33c0-4 5-4 12-7" fill="none" stroke="#ffffff" stroke-width="1.5" />
+    
+    <!-- Label -->
+    <text x="32" y="52" text-anchor="middle" font-family="'SF Mono', 'Geist Mono', monospace" font-size="7" font-weight="600" fill="#71717a" letter-spacing="1">GIT</text>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      @keyframes floatIcon {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+      @keyframes shimmerTS {
+        0%, 100% { fill: #ffffff; }
+        50% { fill: #a1a1aa; }
+      }
+      .container { animation: floatIcon 3.5s ease-in-out infinite; }
+      .ts-text { animation: shimmerTS 3s ease-in-out infinite; }
+    </style>
+  </defs>
+  <g class="container">
+    <rect width="64" height="64" rx="14" fill="#09090b" stroke="#27272a" stroke-width="1.2" />
+    <rect x="4" y="4" width="56" height="56" rx="10" fill="#121214" />
+    <!-- TypeScript Badge -->
+    <path class="ts-text" d="M21 24h-7v3.2h2.2v12.8h3v-12.8h2.2V24zm12 5.5c-.6-.7-1.5-1.2-2.6-1.5l-1.1-.3c-.8-.2-1.2-.5-1.2-.9s.4-.7 1-.7c.8 0 1.4.4 1.8.9l2.4-1.7c-1-1.3-2.4-1.8-4.2-1.8-2.6 0-4.5 1.5-4.5 3.8 0 1.5 1 2.7 2.7 3.2l1.2.4c1 .3 1.5.7 1.5 1.3 0 .6-.6 1-1.4 1-.9 0-1.7-.5-2.2-1.3l-2.4 1.7c1 1.7 2.7 2.4 4.8 2.4 2.9 0 4.8-1.5 4.8-4.1 0-1.6-1-2.7-2.7-3.3z" />
+    <!-- Label -->
+    <text x="32" y="52" text-anchor="middle" font-family="'SF Mono', 'Geist Mono', monospace" font-size="7" font-weight="600" fill="#71717a" letter-spacing="1">TS</text>
+  </g>
+</svg>
