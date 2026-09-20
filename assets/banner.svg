@@ -1,169 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 250" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 200" width="100%" height="100%">
   <defs>
-    <!-- Web Font Imports: Space Grotesk (Modern Bold Grotesk) & Instrument Serif & JetBrains Mono -->
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700;900&display=swap');
-
-      .font-display {
-        font-family: 'Space Grotesk', 'Cabinet Grotesk', 'SF Pro Display', -apple-system, sans-serif;
-      }
-      .font-serif {
-        font-family: 'Instrument Serif', 'Newsreader', 'Playfair Display', Georgia, serif;
-      }
-      .font-mono {
-        font-family: 'JetBrains Mono', 'Geist Mono', 'SF Mono', Consolas, monospace;
-      }
-
-      @keyframes floatSubtle {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-3px); }
-      }
-
-      @keyframes shimmerLine {
-        0% { transform: translateX(-860px); }
-        100% { transform: translateX(860px); }
-      }
-
-      @keyframes pulseLight {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.9; }
-      }
-
-      .hero-content {
-        animation: floatSubtle 6s ease-in-out infinite;
-      }
-      .laser-shimmer {
-        animation: shimmerLine 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      }
-      .beacon {
-        animation: pulseLight 2s ease-in-out infinite;
-      }
-    </style>
-
-    <!-- Deep Luxury Black Gradient -->
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#050507" />
-      <stop offset="50%" stop-color="#0a0a0f" />
-      <stop offset="100%" stop-color="#050507" />
+    <!-- Rich Midnight / Modern Developer Gradient -->
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0f172a" />
     </linearGradient>
 
-    <!-- Laser Shimmer Gradient -->
-    <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.9" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    <!-- Vibrant Gradient for Title Text -->
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
     </linearGradient>
 
-    <!-- Ambient Subtle Diffused Radial Light -->
-    <radialGradient id="softRadial" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    <!-- Animated Shimmering Laser Border -->
+    <linearGradient id="laserGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="1" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0" />
+      <animateTransform attributeName="gradientTransform" type="translate" from="-850,0" to="850,0" dur="3.5s" repeatCount="indefinite" />
+    </linearGradient>
+
+    <!-- Radial Cyan Accent -->
+    <radialGradient id="cyanOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Precise Architectural Grid -->
-    <pattern id="archGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#18181b" stroke-width="0.6" stroke-opacity="0.9" />
-      <circle cx="0" cy="0" r="0.6" fill="#27272a" />
-    </pattern>
+    <!-- Radial Purple Accent -->
+    <radialGradient id="purpleOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+    </radialGradient>
+
+    <style>
+      .mono-fira {
+        font-family: 'Fira Code', Consolas, Monaco, 'SF Mono', monospace;
+      }
+      .display-sans {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+      @keyframes floatSoft {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+      }
+      .floating-core {
+        animation: floatSoft 4s ease-in-out infinite;
+      }
+    </style>
   </defs>
 
-  <!-- Outer Double-Bezel Architecture (Machined Hardware Tray) -->
-  <rect width="860" height="250" rx="16" fill="url(#bgGradient)" stroke="#27272a" stroke-width="1.2" />
-  <rect x="5" y="5" width="850" height="240" rx="12" fill="none" stroke="#18181b" stroke-width="1" />
+  <!-- Card Background -->
+  <rect width="850" height="200" rx="16" fill="url(#bgGlow)" stroke="#1e293b" stroke-width="1.5" />
 
-  <!-- Background Grid & Subtle Ambient Glow -->
-  <rect x="6" y="6" width="848" height="238" rx="11" fill="url(#archGrid)" />
-  <circle cx="430" cy="125" r="240" fill="url(#softRadial)" />
+  <!-- Ambient Light Blobs -->
+  <circle cx="200" cy="70" r="140" fill="url(#cyanOrb)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="680" cy="130" r="150" fill="url(#purpleOrb)">
+    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="5s" repeatCount="indefinite" />
+  </circle>
 
-  <!-- Top Metadata Navigation Bar -->
-  <g transform="translate(28, 30)">
-    <text x="0" y="0" class="font-mono" font-size="10" font-weight="700" fill="#71717a" letter-spacing="2">
-      SYS // 084-SHB
-    </text>
+  <!-- Floating Content Group -->
+  <g class="floating-core">
+    <!-- Status Pill -->
+    <g transform="translate(425, 38)">
+      <rect x="-140" y="-12" width="280" height="24" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      
+      <!-- Green Pulsing Beacon -->
+      <circle cx="-118" cy="0" r="3.5" fill="#22c55e">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="-118" cy="0" r="6" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.6">
+        <animate attributeName="r" values="3.5;8;3.5" dur="1.8s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.8s" repeatCount="indefinite" />
+      </circle>
 
-    <!-- Center Status Indicator -->
-    <g transform="translate(402, -3)">
-      <circle cx="-100" cy="0" r="3" fill="#ffffff" class="beacon" />
-      <text x="-90" y="3" class="font-mono" font-size="9.5" font-weight="600" fill="#a1a1aa" letter-spacing="2">
-        FULL-STACK ARCHITECT • ACTIVE
+      <text x="-105" y="4" fill="#94a3b8" font-size="10.5" font-weight="600" class="mono-fira" letter-spacing="1.5">
+        ONLINE • FULL-STACK ENGINEER
       </text>
     </g>
 
-    <!-- Right Date / Coordinates -->
-    <text x="804" y="0" text-anchor="end" class="font-mono" font-size="10" font-weight="700" fill="#71717a" letter-spacing="2">
-      25°44'N 88°21'E
-    </text>
-  </g>
-
-  <!-- Hairline Separator -->
-  <line x1="28" y1="42" x2="832" y2="42" stroke="#1f1f23" stroke-width="1" />
-
-  <!-- Corner Precision Reticles -->
-  <path d="M 20 54 L 20 46 L 28 46" stroke="#3f3f46" stroke-width="1" fill="none" />
-  <path d="M 840 54 L 840 46 L 832 46" stroke="#3f3f46" stroke-width="1" fill="none" />
-  <path d="M 20 216 L 20 224 L 28 224" stroke="#3f3f46" stroke-width="1" fill="none" />
-  <path d="M 840 216 L 840 224 L 832 224" stroke="#3f3f46" stroke-width="1" fill="none" />
-
-  <!-- Main Hero Typographic Composition -->
-  <g class="hero-content">
-    
-    <!-- Editorial Typographic Dual-Style Heading -->
-    <g transform="translate(430, 118)">
-      <!-- Grotesk Part: SIHAB -->
-      <text x="-12" y="0" text-anchor="end" class="font-display" font-size="46" font-weight="900" fill="#ffffff" letter-spacing="4">
-        MD SIHAB
-      </text>
-      <!-- Refined Serif Italic Part: HOSSEN -->
-      <text x="12" y="0" text-anchor="start" class="font-serif" font-style="italic" font-size="52" font-weight="400" fill="#d4d4d8" letter-spacing="1">
-        Hossen
-      </text>
-    </g>
-
-    <!-- Typographic Secondary Subtitle -->
-    <text x="430" y="152" text-anchor="middle" class="font-mono" font-size="12" font-weight="500" fill="#71717a" letter-spacing="3.5">
-      ENGINEERING SCALABLE SYSTEMS  ✦  WEB PLATFORMS  ✦  AI WORKFLOWS
+    <!-- Main Title -->
+    <text x="425" y="98" text-anchor="middle" font-size="38" font-weight="900" class="display-sans" fill="url(#titleGradient)" letter-spacing="2">
+      MD SIHAB HOSSEN
     </text>
 
-    <!-- Technical Capsule Pills -->
-    <g transform="translate(430, 185)">
-      <!-- Pill 1 -->
-      <g transform="translate(-160, 0)">
-        <rect x="-55" y="-10" width="110" height="20" rx="4" fill="#121214" stroke="#27272a" stroke-width="0.8" />
-        <text x="0" y="3.5" text-anchor="middle" class="font-mono" font-size="9" font-weight="600" fill="#e4e4e7" letter-spacing="1">
-          TYPESCRIPT
-        </text>
-      </g>
-      <!-- Pill 2 -->
-      <g transform="translate(-50, 0)">
-        <rect x="-45" y="-10" width="90" height="20" rx="4" fill="#121214" stroke="#27272a" stroke-width="0.8" />
-        <text x="0" y="3.5" text-anchor="middle" class="font-mono" font-size="9" font-weight="600" fill="#e4e4e7" letter-spacing="1">
-          NEXT.JS
-        </text>
-      </g>
-      <!-- Pill 3 -->
-      <g transform="translate(50, 0)">
-        <rect x="-45" y="-10" width="90" height="20" rx="4" fill="#121214" stroke="#27272a" stroke-width="0.8" />
-        <text x="0" y="3.5" text-anchor="middle" class="font-mono" font-size="9" font-weight="600" fill="#e4e4e7" letter-spacing="1">
-          NODE.JS
-        </text>
-      </g>
-      <!-- Pill 4 -->
-      <g transform="translate(160, 0)">
-        <rect x="-55" y="-10" width="110" height="20" rx="4" fill="#121214" stroke="#27272a" stroke-width="0.8" />
-        <text x="0" y="3.5" text-anchor="middle" class="font-mono" font-size="9" font-weight="600" fill="#e4e4e7" letter-spacing="1">
-          FASTAPI / PY
-        </text>
-      </g>
+    <!-- Tagline -->
+    <text x="425" y="130" text-anchor="middle" font-size="14" font-weight="500" class="mono-fira" fill="#cbd5e1" letter-spacing="2">
+      CRAFTING MODERN WEB APPS • SCALABLE APIS • AI AGENTS
+    </text>
+
+    <!-- Tech Stack Accents -->
+    <g transform="translate(425, 162)">
+      <text x="-190" y="0" text-anchor="middle" font-size="11.5" font-weight="600" class="mono-fira" fill="#38bdf8">TYPESCRIPT</text>
+      <text x="-125" y="0" text-anchor="middle" font-size="11.5" fill="#475569">•</text>
+      <text x="-65" y="0" text-anchor="middle" font-size="11.5" font-weight="600" class="mono-fira" fill="#60a5fa">REACT &amp; NEXT.JS</text>
+      <text x="5" y="0" text-anchor="middle" font-size="11.5" fill="#475569">•</text>
+      <text x="70" y="0" text-anchor="middle" font-size="11.5" font-weight="600" class="mono-fira" fill="#34d399">NODE.JS</text>
+      <text x="130" y="0" text-anchor="middle" font-size="11.5" fill="#475569">•</text>
+      <text x="190" y="0" text-anchor="middle" font-size="11.5" font-weight="600" class="mono-fira" fill="#fbbf24">PYTHON</text>
     </g>
   </g>
 
-  <!-- Bottom Architectural Baseline & Running Laser Beam -->
-  <line x1="28" y1="230" x2="832" y2="230" stroke="#18181b" stroke-width="1" />
-  
-  <g clip-path="url(#bottomClip)">
-    <clipPath id="bottomClip">
-      <rect x="28" y="229" width="804" height="2" />
-    </clipPath>
-    <rect class="laser-shimmer" x="0" y="229" width="300" height="2" fill="url(#laserBeam)" />
-  </g>
+  <!-- Bottom Laser Shimmer Accent -->
+  <rect x="0" y="196" width="850" height="4" rx="2" fill="url(#laserGlow)" />
 </svg>
