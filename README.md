@@ -1,16 +1,30 @@
+<!-- ================================================================= -->
+<!-- 🌟 ULTRA-PREMIUM ANIMATED GITHUB PROFILE - MD SIHAB HOSSEN 🌟 -->
+<!-- ================================================================= -->
+
 <div align="center">
 
-  # 👨‍💻 Hi there, I'm Md Sihab Hossen 👋
-  
-  [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=650&lines=Full-Stack+Developer+%26+Problem+Solver;TypeScript+%7C+JavaScript+%7C+Python+%7C+React;Crafting+Modern+Web+Apps+%26+Smart+Tools;Building+Impactful+Projects+Daily)](https://github.com/opsihab660)
+  <!-- Dynamic Waving Animated Gradient Header Banner -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=10,18,24,35&height=260&section=header&text=Md%20Sihab%20Hossen&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Full-Stack%20Engineer%20%E2%80%A2%20AI%20%26%20Automation%20Architect&descSize=18&descAlignY=58" width="100%" alt="Header Banner" />
 
+  <!-- Animated Typing Headline -->
+  <a href="https://github.com/opsihab660">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=23&duration=2800&pause=1000&color=38BDF8&center=true&vCenter=true&width=780&lines=Full-Stack+Engineer+%7C+TypeScript+%26+Python+Specialist;Building+High-Impact+Web+Architectures+%26+Smart+APIs;Designing+Intelligent+Autonomous+Agents+%26+Tooling;Passionate+Problem+Solver+%7C+Shipping+Daily" alt="Typing SVG" />
+  </a>
+
+  <br/><br/>
+
+  <!-- Status & Visitor Badges -->
   <p align="center">
-    <strong>Full-Stack Developer • Software Craftsman • Open Source Enthusiast</strong>
+    <img src="https://img.shields.io/badge/Status-Building_%26_Innovating-22c55e?style=for-the-badge&logo=rocket&logoColor=white" alt="Status" />
+    <img src="https://img.shields.io/badge/Focus-Full--Stack_%26_AI-6366f1?style=for-the-badge&logo=codeigniter&logoColor=white" alt="Focus" />
+    <img src="https://komarev.com/ghpvc/?username=opsihab660&color=38BDF8&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views" />
   </p>
 
+  <!-- Quick Social Connect Hub -->
   <p align="center">
     <a href="mailto:ms.sihab.543@gmail.com">
-      <img src="https://img.shields.io/badge/Email-ms.sihab.543%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+      <img src="https://img.shields.io/badge/Gmail-ms.sihab.543%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
     </a>
     <a href="https://github.com/opsihab660">
       <img src="https://img.shields.io/badge/GitHub-opsihab660-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
@@ -24,81 +38,127 @@
 
 ---
 
-### 🚀 About Me
+### ⚡ Executive Summary
 
-I am a passionate **Full-Stack Developer** from Bangladesh 🇧🇩 with a strong focus on building performant, modern, and user-centric web applications and developer tools.
+```yaml
+Name: Md Sihab Hossen
+Location: Bangladesh 🇧🇩
+Role: Full-Stack Engineer & Software Craftsman
+Specialization: TypeScript, Python, Next.js, Node.js, Scalable APIs
+Current_Focus: Autonomous AI Agents & Privacy-Centric Analytics
+Mission: Engineering high-performance software that solves real-world pain points.
+```
 
-- 🔭 **Currently building**: [DayLens](https://github.com/opsihab660/daylens) — a privacy-first activity & learning analytics tool, and [Bodh-Agent](https://github.com/opsihab660/bodh-agent).
-- 💡 **Core Strengths**: Clean Architecture, API Design, Modern UI/UX, and Scalable Backend services.
-- 🌱 **Continuously Exploring**: Advanced Next.js, Distributed Systems, Microservices, and AI Agent workflows.
-- ⚡ **Philosophy**: *"Continuous learning, disciplined execution, and crafting code that solves real problems."*
+- 🔭 **Flagship Initiatives**:
+  - [**DayLens**](https://github.com/opsihab660/daylens) — Privacy-first Windows desktop activity & learning analytics system.
+  - [**Bodh Agent**](https://github.com/opsihab660/bodh-agent) — Intelligent autonomous agent architecture and automation flows.
+  - [**MovieBox API v2**](https://github.com/opsihab660/moviebox-v2-api) — High-throughput streaming metadata resolution microservice.
+- 💡 **Core Engineering Principles**: Maintainable clean code, resilient backend architectures, intuitive interfaces, and rapid iterative shipping.
+- 💬 **Ask me about**: JavaScript/TypeScript ecosystems, Python automation, RESTful architectures, and building production-grade web apps.
 
 ---
 
-### 🛠️ Tech Stack & Tooling
+### 🛠️ Core Tech Stack & Tooling
 
 <div align="center">
 
-#### 💻 Languages
+#### 💻 Programming Languages
 <p>
-  <img src="https://skillicons.dev/icons?i=ts,js,python,html,css" alt="Languages" />
+  <img src="https://skillicons.dev/icons?i=ts,js,python,html,css,bash&theme=dark" alt="Languages" />
 </p>
 
-#### 🌐 Frontend & UI
+#### ⚛️ Frontend & UI Engineering
 <p>
-  <img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,redux,bootstrap,sass" alt="Frontend" />
+  <img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,redux,vite,bootstrap,sass&theme=dark" alt="Frontend" />
 </p>
 
-#### ⚙️ Backend, APIs & Databases
+#### ⚙️ Backend, Frameworks & APIs
 <p>
-  <img src="https://skillicons.dev/icons?i=nodejs,express,fastapi,mongodb,postgres,prisma" alt="Backend & DB" />
+  <img src="https://skillicons.dev/icons?i=nodejs,express,fastapi,flask,postman&theme=dark" alt="Backend" />
 </p>
 
-#### 🧰 Tools & DevOps
+#### 🗄️ Databases, ORMs & Cache
 <p>
-  <img src="https://skillicons.dev/icons?i=git,github,vscode,docker,postman,vercel,linux" alt="Tools" />
+  <img src="https://skillicons.dev/icons?i=postgres,mongodb,prisma,sqlite&theme=dark" alt="Databases" />
+</p>
+
+#### ☁️ DevOps, Infrastructure & Workflow
+<p>
+  <img src="https://skillicons.dev/icons?i=git,github,docker,vercel,linux,vscode&theme=dark" alt="DevOps" />
 </p>
 
 </div>
 
 ---
 
-### 🌟 Featured Projects
-
-| Project | Description | Tech Stack | Link |
-| :--- | :--- | :--- | :--- |
-| 🛡️ **DayLens** | Privacy-first Windows activity & personal learning analytics tool. | `JavaScript` `Node.js` `Analytics` | [Repository](https://github.com/opsihab660/daylens) |
-| 🤖 **Bodh Agent** | Intelligent autonomous agent system and workflow automation. | `JavaScript` `AI` `Automation` | [Repository](https://github.com/opsihab660/bodh-agent) |
-| 🎬 **MovieBox API v2** | High-performance media streaming and metadata API service. | `Python` `FastAPI` `REST` | [Repository](https://github.com/opsihab660/moviebox-v2-api) |
-| 💬 **Messenger Bot Dashboard** | Intuitive control panel for managing automated messaging bots. | `JavaScript` `React` `APIs` | [Repository](https://github.com/opsihab660/fb-messenger-bot-dashboard) |
-| 📺 **Anime Dekho** | Modern and responsive anime discovery & catalog web application. | `TypeScript` `React` `Tailwind` | [Repository](https://github.com/opsihab660/anime-dekho) |
-
----
-
-### 📊 GitHub Activity & Metrics
+### 🚀 Featured Engineering Projects
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=opsihab660&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="opsihab660's GitHub stats" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=opsihab660&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="Top Languages" height="165" />
-</div>
 
-<div align="center" style="margin-top: 10px;">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=opsihab660&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub Streak" />
+| Project | Highlights | Tech Stack | Repository |
+| :--- | :--- | :--- | :---: |
+| 🛡️ **DayLens** | **Privacy-first desktop activity & learning analytics** with real-time tracking metrics and actionable productivity insights. | `JavaScript` `Node.js` `Analytics` | [**Explore**](https://github.com/opsihab660/daylens) |
+| 🤖 **Bodh Agent** | **Autonomous AI agent orchestration** engineered for multi-step workflow automation and custom task execution. | `JavaScript` `AI` `Automation` | [**Explore**](https://github.com/opsihab660/bodh-agent) |
+| 🎬 **MovieBox API v2** | **High-speed media metadata & streaming resolver API** built for high throughput and rapid responses. | `Python` `FastAPI` `REST` | [**Explore**](https://github.com/opsihab660/moviebox-v2-api) |
+| 💬 **Messenger Bot Hub** | **Comprehensive bot dashboard** providing real-time controls, metrics, and automation configurations. | `React` `JavaScript` `APIs` | [**Explore**](https://github.com/opsihab660/fb-messenger-bot-dashboard) |
+| 📺 **Anime Dekho** | **Modern responsive streaming & catalog platform** built with sleek animations and responsive component architecture. | `TypeScript` `React` `Tailwind` | [**Explore**](https://github.com/opsihab660/anime-dekho) |
+
 </div>
 
 ---
 
-### 🤝 Let's Connect!
+### 📊 Real-Time GitHub Analytics & Metrics
 
 <div align="center">
 
-  Feel free to reach out for collaborations, project inquiries, or just a tech chat!
+  <table border="0">
+    <tr>
+      <td>
+        <img src="https://github-readme-stats-fast.vercel.app/api?username=opsihab660&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8" height="175" alt="GitHub Overview Stats" />
+      </td>
+      <td>
+        <img src="https://streak-stats.demolab.com?user=opsihab660&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8" height="175" alt="GitHub Streak Stats" />
+      </td>
+    </tr>
+  </table>
+
+  <br/>
+
+  <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=opsihab660&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8" width="420" alt="Top Languages" />
+
+</div>
+
+---
+
+### 💡 Daily Engineering Inspiration
+
+<div align="center">
+  <a href="https://github.com/opsihab660">
+    <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Dev Quote" />
+  </a>
+</div>
+
+---
+
+### 🤝 Get in Touch & Collaborate
+
+<div align="center">
+
+  Have an exciting project, open-source opportunity, or technical question? **Let's build something awesome together!**
+
+  <br/>
 
   <a href="mailto:ms.sihab.543@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+    <img src="https://img.shields.io/badge/Send%20Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Me" />
   </a>
+  &nbsp;
   <a href="https://github.com/opsihab660">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    <img src="https://img.shields.io/badge/Follow%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
+
+  <br/><br/>
+
+  <!-- Dynamic Waving Animated Gradient Footer -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=10,18,24,35&height=120&section=footer" width="100%" alt="Footer Wave" />
 
 </div>
