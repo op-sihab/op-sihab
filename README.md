@@ -94,7 +94,7 @@
         <img src="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8" height="170" alt="GitHub Stats" />
       </td>
       <td>
-        <img src="https://streak-stats.demolab.com?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&mode=weekly" height="170" alt="GitHub Streak" />
+        <img src="https://streak-stats.demolab.com?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8" height="170" alt="GitHub Streak" />
       </td>
     </tr>
   </table>
