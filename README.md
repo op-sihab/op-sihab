@@ -92,9 +92,9 @@
     <tr>
       <td>
         <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8">
-          <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=default&hide_border=true&bg_color=FFFFFF&title_color=0969DA&icon_color=0969DA&text_color=656D76">
-          <img src="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8" height="170" alt="GitHub Stats" />
+          <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&include_all_commits=true&hide_rank=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8&border_radius=8">
+          <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&include_all_commits=true&hide_rank=true&theme=default&bg_color=FFFFFF&title_color=0969DA&text_color=24292F&icon_color=0969DA&border_color=D0D7DE&border_radius=8">
+          <img src="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&include_all_commits=true&hide_rank=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8&border_radius=8" height="170" alt="GitHub Stats" />
         </picture>
       </td>
       <td>
@@ -110,9 +110,9 @@
   <br/>
 
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=default&hide_border=true&bg_color=FFFFFF&title_color=0969DA&text_color=656D76">
-    <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8" width="400" alt="Top Languages" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&hide=html,powershell,roff&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8&border_radius=8">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&hide=html,powershell,roff&theme=default&bg_color=FFFFFF&title_color=0969DA&text_color=24292F&border_color=D0D7DE&border_radius=8">
+    <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&hide=html,powershell,roff&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8&border_radius=8" width="400" alt="Top Languages" />
   </picture>
 
 </div>
