@@ -2,6 +2,7 @@ import os
 import re
 import urllib.request
 import html
+from datetime import datetime, timedelta
 
 USERNAME = "op-sihab"
 URL = f"https://github.com/users/{USERNAME}/contributions"
@@ -19,7 +20,7 @@ def fetch_contributions_html():
 def parse_contributions(content):
     # Total contributions
     total_match = re.search(r'([0-9,]+)\s+contributions\s+in the last year', content)
-    total_str = total_match.group(1) if total_match else "167"
+    total_str = total_match.group(1) if total_match else "309"
 
     # Months header
     months = []
@@ -33,7 +34,7 @@ def parse_contributions(content):
         short_name = m.group(3).strip()
         months.append((colspan, full_name, short_name))
 
-    # Parse tooltips for nice title hover
+    # Parse tooltips
     tooltips = {}
     for tm in re.finditer(r'<tool-tip[^>]*for="([^"]+)"[^>]*>(.*?)</tool-tip>', content):
         cell_id = tm.group(1)
@@ -63,12 +64,77 @@ def parse_contributions(content):
                 "tip": tip
             })
 
-    return total_str, months, cells
+    # Sort cells by date for accurate streak calculations
+    sorted_cells = sorted(cells, key=lambda x: x["date"])
+
+    # Calculate Streaks
+    active_dates = set(c["date"] for c in sorted_cells if c["level"] > 0)
+    
+    start_dt = datetime.strptime(sorted_cells[0]["date"], "%Y-%m-%d").date()
+    end_dt = datetime.strptime(sorted_cells[-1]["date"], "%Y-%m-%d").date()
+
+    all_streaks = []
+    cur_streak = 0
+    cur_start = None
+    d = start_dt
+
+    while d <= end_dt:
+        ds = d.strftime("%Y-%m-%d")
+        if ds in active_dates:
+            if cur_streak == 0:
+                cur_start = d
+            cur_streak += 1
+        else:
+            if cur_streak > 0:
+                all_streaks.append((cur_streak, cur_start, d - timedelta(days=1)))
+                cur_streak = 0
+        d += timedelta(days=1)
+
+    if cur_streak > 0:
+        all_streaks.append((cur_streak, cur_start, end_dt))
+
+    # Longest Streak
+    longest_len, longest_start, longest_end = max(all_streaks, key=lambda x: x[0]) if all_streaks else (0, start_dt, start_dt)
+    
+    # Current Streak (must touch today or yesterday)
+    today = end_dt
+    yesterday = today - timedelta(days=1)
+    
+    current_len = 0
+    current_start = today
+    current_end = today
+    if all_streaks:
+        last_s = all_streaks[-1]
+        if last_s[2] == today or last_s[2] == yesterday:
+            current_len, current_start, current_end = last_s
+
+    # Format date ranges (e.g., "Aug 28 - Sep 1", "Sep 26 - Sep 29")
+    def format_range(s_date, e_date):
+        if s_date == e_date:
+            return s_date.strftime("%b %d").replace(" 0", " ")
+        return f"{s_date.strftime('%b')} {s_date.day} - {e_date.strftime('%b')} {e_date.day}"
+
+    # First active date to Present for total contributions
+    first_active = min([datetime.strptime(c["date"], "%Y-%m-%d").date() for c in sorted_cells if c["level"] > 0], default=start_dt)
+    total_range = f"{first_active.strftime('%b')} {first_active.day} - Present"
+
+    longest_range = format_range(longest_start, longest_end)
+    current_range = format_range(current_start, current_end) if current_len > 0 else today.strftime("%b %d")
+
+    streak_data = {
+        "total_contributions": total_str,
+        "total_range": total_range,
+        "current_streak": current_len,
+        "current_range": current_range,
+        "longest_streak": longest_len,
+        "longest_range": longest_range,
+    }
+
+    return total_str, months, cells, streak_data
 
 def generate_svg(total_str, months, cells, theme="dark"):
     is_dark = theme == "dark"
 
-    # Palette
     if is_dark:
         bg_card = "#0d1117"
         border_card = "#30363d"
@@ -76,8 +142,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
         text_primary = "#f0f6fc"
         text_accent = "#38bdf8"
         text_muted = "#7d8590"
-        link_color = "#58a6ff"
-        # Contribution level squares (Dark mode GitHub colors)
         color_levels = {
             0: "#161b22",
             1: "#0e4429",
@@ -94,8 +158,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
         text_primary = "#1f2328"
         text_accent = "#0969da"
         text_muted = "#656d76"
-        link_color = "#0969da"
-        # Contribution level squares (Exact light mode colors from user image)
         color_levels = {
             0: "#ebedf0",
             1: "#9be9a8",
@@ -106,7 +168,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
         cell_stroke = "rgba(27,31,35,0.06)"
         glow_color = "#2ea44f"
 
-    # Layout dimensions
     card_width = 850
     card_height = 205
     start_x = 75
@@ -115,7 +176,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
     box_gap = 3
     stride = box_size + box_gap
 
-    # Build months labels
     months_svg = []
     current_col = 0
     for colspan, full_name, short_name in months:
@@ -125,7 +185,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
         )
         current_col += colspan
 
-    # Build day of week labels (Mon = row 1, Wed = row 3, Fri = row 5)
     days_svg = []
     day_labels = [(1, "Mon"), (3, "Wed"), (5, "Fri")]
     for row_idx, label in day_labels:
@@ -134,7 +193,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
             f'<text x="{start_x - 30}" y="{dy}" fill="{text_muted}" font-size="10" font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{label}</text>'
         )
 
-    # Build cells
     cells_svg = []
     for c in cells:
         cx = start_x + (c["col"] * stride)
@@ -146,7 +204,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
             f'<rect class="cell" x="{cx}" y="{cy}" width="{box_size}" height="{box_size}" rx="2.5" fill="{color}" {stroke_attr} data-date="{c["date"]}" data-level="{c["level"]}"><title>{safe_tip}</title></rect>'
         )
 
-    # Legend at bottom right
     legend_start_x = start_x + (53 * stride) - 105
     legend_y = start_y + (7 * stride) + 16
     legend_cells = []
@@ -158,7 +215,6 @@ def generate_svg(total_str, months, cells, theme="dark"):
             f'<rect x="{lx}" y="{legend_y - 9}" width="{box_size}" height="{box_size}" rx="2" fill="{lcolor}" {lstroke} />'
         )
 
-    # Inner grid border (bounding the graph area like GitHub does)
     inner_box_x = start_x - 42
     inner_box_y = start_y - 28
     inner_box_w = (53 * stride) + 48
@@ -190,13 +246,9 @@ def generate_svg(total_str, months, cells, theme="dark"):
     </style>
   </defs>
 
-  <!-- Outer Card Frame -->
   <rect width="{card_width}" height="{card_height}" rx="12" fill="{bg_card}" stroke="{border_card}" stroke-width="1" />
-
-  <!-- Inner Calendar Border (exact match to GitHub profile graph box) -->
   <rect x="{inner_box_x}" y="{inner_box_y}" width="{inner_box_w}" height="{inner_box_h}" rx="8" fill="none" stroke="{inner_border}" stroke-width="1" />
 
-  <!-- Card Header -->
   <text x="{inner_box_x + 16}" y="{inner_box_y + 19}" class="text-title">
     <tspan fill="{text_accent}">{total_str}</tspan> contributions in the last year
   </text>
@@ -204,16 +256,10 @@ def generate_svg(total_str, months, cells, theme="dark"):
     GitHub Activity &amp; Metrics
   </text>
 
-  <!-- Month Labels -->
   {''.join(months_svg)}
-
-  <!-- Day Labels -->
   {''.join(days_svg)}
-
-  <!-- Heatmap Contribution Squares -->
   {''.join(cells_svg)}
 
-  <!-- Footer Info & Legend -->
   <a href="https://docs.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile" target="_blank">
     <text x="{inner_box_x + 16}" y="{legend_y}" class="text-meta" style="cursor: pointer; text-decoration: underline;">
       Learn how we count contributions
@@ -225,6 +271,114 @@ def generate_svg(total_str, months, cells, theme="dark"):
   <text x="{legend_start_x + 30 + (5 * (box_size + 2)) + 4}" y="{legend_y}" class="text-meta">More</text>
 </svg>'''
     return svg_content
+
+def generate_streak_svg(streak_data, theme="dark"):
+    is_dark = theme == "dark"
+
+    if is_dark:
+        bg_card = "#0D1117"
+        border_card = "#30363D"
+        line_color = "#30363D"
+        text_num = "#70A5FD"
+        text_accent_num = "#BF91F3"
+        text_label = "#94A3B8"
+        text_curr_label = "#38BDF8"
+        text_date = "#38BDAE"
+        ring_color = "#38BDF8"
+        fire_color = "#F59E0B"
+    else:
+        bg_card = "#FFFFFF"
+        border_card = "#D0D7DE"
+        line_color = "#D0D7DE"
+        text_num = "#0969DA"
+        text_accent_num = "#8250DF"
+        text_label = "#656D76"
+        text_curr_label = "#0969DA"
+        text_date = "#1A7F37"
+        ring_color = "#0969DA"
+        fire_color = "#D97706"
+
+    total_cnt = streak_data["total_contributions"]
+    total_range = streak_data["total_range"]
+    curr_streak = streak_data["current_streak"]
+    curr_range = streak_data["current_range"]
+    longest_streak = streak_data["longest_streak"]
+    longest_range = streak_data["longest_range"]
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195">
+  <defs>
+    <style>
+      .num {{
+        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        text-anchor: middle;
+      }}
+      .lbl {{
+        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        text-anchor: middle;
+      }}
+      .lbl-curr {{
+        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        text-anchor: middle;
+      }}
+      .dt {{
+        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        text-anchor: middle;
+      }}
+      @keyframes flamePulse {{
+        0%, 100% {{ transform: scale(1); }}
+        50% {{ transform: scale(1.1); }}
+      }}
+      .flame {{
+        transform-origin: 247.5px 38px;
+        animation: flamePulse 2s ease-in-out infinite;
+      }}
+    </style>
+  </defs>
+
+  <rect width="495" height="195" rx="6" fill="{bg_card}" stroke="{border_card}" stroke-width="1" />
+
+  <!-- Dividers -->
+  <line x1="170" y1="40" x2="170" y2="160" stroke="{line_color}" stroke-width="1" />
+  <line x1="325" y1="40" x2="325" y2="160" stroke="{line_color}" stroke-width="1" />
+
+  <!-- Total Contributions Column -->
+  <g transform="translate(85, 0)">
+    <text x="0" y="80" class="num" fill="{text_num}">{total_cnt}</text>
+    <text x="0" y="112" class="lbl" fill="{text_label}">Total Contributions</text>
+    <text x="0" y="140" class="dt" fill="{text_date}">{total_range}</text>
+  </g>
+
+  <!-- Current Streak Column -->
+  <g transform="translate(247.5, 0)">
+    <!-- Ring -->
+    <circle cx="0" cy="74" r="38" fill="none" stroke="{ring_color}" stroke-width="4.5" stroke-linecap="round" />
+    
+    <!-- Flame Icon atop ring -->
+    <g class="flame" transform="translate(-12, 18)">
+      <path fill="{fire_color}" d="M12 2C9.5 5 7 7.5 7 11a5 5 0 0 0 10 0c0-3.5-2.5-6-5-9zm0 13a3 3 0 0 1-3-3c0-1.5 1-2.8 2-3.8.4.8 1 1.5 1.5 2.2.4-.6.8-1.4.9-2.4 1 1.2 1.6 2.5 1.6 4a3 3 0 0 1-3 3z" />
+    </g>
+
+    <text x="0" y="83" class="num" fill="{text_accent_num}">{curr_streak}</text>
+    <text x="0" y="132" class="lbl-curr" fill="{text_curr_label}">Current Streak</text>
+    <text x="0" y="156" class="dt" fill="{text_date}">{curr_range}</text>
+  </g>
+
+  <!-- Longest Streak Column -->
+  <g transform="translate(410, 0)">
+    <text x="0" y="80" class="num" fill="{text_num}">{longest_streak}</text>
+    <text x="0" y="112" class="lbl" fill="{text_label}">Longest Streak</text>
+    <text x="0" y="140" class="dt" fill="{text_date}">{longest_range}</text>
+  </g>
+</svg>'''
+    return svg
 
 def main():
     print(f"Fetching contribution data for {USERNAME}...")
@@ -242,30 +396,37 @@ def main():
         else:
             raise
 
-    total_str, months, cells = parse_contributions(content)
+    total_str, months, cells, streak_data = parse_contributions(content)
     print(f"Parsed {total_str} contributions across {len(cells)} days.")
+    print("Streak Data:", streak_data)
 
     os.makedirs("assets", exist_ok=True)
 
-    # 1. Dark Theme
+    # Heatmaps
     dark_svg = generate_svg(total_str, months, cells, theme="dark")
-    dark_path = os.path.join("assets", "github-contributions-dark.svg")
-    with open(dark_path, "w", encoding="utf-8") as f:
+    with open(os.path.join("assets", "github-contributions-dark.svg"), "w", encoding="utf-8") as f:
         f.write(dark_svg)
-    print(f"Saved: {dark_path}")
 
-    # 2. Light Theme (Matches user's image exactly)
     light_svg = generate_svg(total_str, months, cells, theme="light")
-    light_path = os.path.join("assets", "github-contributions-light.svg")
-    with open(light_path, "w", encoding="utf-8") as f:
+    with open(os.path.join("assets", "github-contributions-light.svg"), "w", encoding="utf-8") as f:
         f.write(light_svg)
-    print(f"Saved: {light_path}")
 
-    # 3. Default (dark)
-    default_path = os.path.join("assets", "github-contributions.svg")
-    with open(default_path, "w", encoding="utf-8") as f:
+    with open(os.path.join("assets", "github-contributions.svg"), "w", encoding="utf-8") as f:
         f.write(dark_svg)
-    print(f"Saved: {default_path}")
+
+    # Streaks
+    dark_streak = generate_streak_svg(streak_data, theme="dark")
+    with open(os.path.join("assets", "github-streak-dark.svg"), "w", encoding="utf-8") as f:
+        f.write(dark_streak)
+
+    light_streak = generate_streak_svg(streak_data, theme="light")
+    with open(os.path.join("assets", "github-streak-light.svg"), "w", encoding="utf-8") as f:
+        f.write(light_streak)
+
+    with open(os.path.join("assets", "github-streak.svg"), "w", encoding="utf-8") as f:
+        f.write(dark_streak)
+
+    print("All SVGs updated successfully!")
 
 if __name__ == "__main__":
     main()

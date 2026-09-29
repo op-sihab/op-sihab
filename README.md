@@ -91,17 +91,29 @@
   <table border="0">
     <tr>
       <td>
-        <img src="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8" height="170" alt="GitHub Stats" />
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8">
+          <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=default&hide_border=true&bg_color=FFFFFF&title_color=0969DA&icon_color=0969DA&text_color=656D76">
+          <img src="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&locale=en&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8" height="170" alt="GitHub Stats" />
+        </picture>
       </td>
       <td>
-        <img src="https://streak-stats.demolab.com?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8" height="170" alt="GitHub Streak" />
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&timezone=Asia/Dhaka">
+          <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com/?user=op-sihab&theme=default&hide_border=true&background=FFFFFF&ring=0969DA&fire=F59E0B&currStreakLabel=0969DA&timezone=Asia/Dhaka">
+          <img src="https://streak-stats.demolab.com/?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&timezone=Asia/Dhaka" height="170" alt="GitHub Streak" />
+        </picture>
       </td>
     </tr>
   </table>
 
   <br/>
 
-  <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8" width="400" alt="Top Languages" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=default&hide_border=true&bg_color=FFFFFF&title_color=0969DA&text_color=656D76">
+    <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8" width="400" alt="Top Languages" />
+  </picture>
 
 </div>
 
