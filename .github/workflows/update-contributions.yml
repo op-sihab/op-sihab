@@ -1,0 +1,38 @@
+name: Update GitHub Contribution Graph
+
+on:
+  schedule:
+    # Run everyday at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'assets/github-contributions*.svg'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate Contribution Graph SVGs
+        run: |
+          python scripts/generate-contributions.py
+
+      - name: Commit and Push if Changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/github-contributions*.svg
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(stats): update contribution graph metrics [skip ci]" && git push)

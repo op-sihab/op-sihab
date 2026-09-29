@@ -77,6 +77,17 @@
 
 <div align="center">
 
+  <!-- Interactive GitHub Contribution Heatmap Card -->
+  <a href="https://github.com/op-sihab">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-contributions-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-contributions-light.svg">
+      <img src="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-contributions-dark.svg" width="100%" alt="Md Sihab Hossen's GitHub Contribution Heatmap" />
+    </picture>
+  </a>
+
+  <br/><br/>
+
   <table border="0">
     <tr>
       <td>
