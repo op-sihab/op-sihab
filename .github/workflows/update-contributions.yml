@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'assets/github-contributions*.svg'
+      - 'assets/*.svg'
 
 jobs:
   build:
@@ -34,5 +34,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/github-contributions*.svg
+          git add assets/*.svg
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(stats): update contribution graph metrics [skip ci]" && git push)

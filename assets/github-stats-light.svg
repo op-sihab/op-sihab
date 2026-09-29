@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195">
+  <defs>
+    <style>
+      .mono-title {
+        font-family: 'SF Mono', 'Geist Mono', 'Fira Code', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+      }
+      .num-val {
+        font-family: 'Segoe UI', -apple-system, sans-serif;
+        font-size: 23px;
+        font-weight: 700;
+      }
+      .label-desc {
+        font-family: 'SF Mono', 'Geist Mono', monospace;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+      }
+      .sub-desc {
+        font-family: -apple-system, 'Segoe UI', sans-serif;
+        font-size: 10.5px;
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.8; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.15); }
+      }
+      .pulse-dot {
+        animation: pulseGlow 2s ease-in-out infinite;
+        transform-origin: center;
+      }
+    </style>
+  </defs>
+
+  <!-- Container Box -->
+  <rect width="495" height="195" rx="8" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1" />
+
+  <!-- Eyebrow Header -->
+  <text x="24" y="28" class="mono-title" fill="#0969DA">
+    TELEMETRY // DEV CONSOLE
+  </text>
+
+  <!-- Live Status Badge -->
+  <g transform="translate(355, 14)">
+    <rect width="118" height="20" rx="10" fill="rgba(26, 127, 55, 0.12)" />
+    <circle cx="12" cy="10" r="3.5" fill="#1A7F37" class="pulse-dot" />
+    <text x="22" y="14" font-family="'SF Mono', 'Geist Mono', monospace" font-size="9.5" font-weight="700" fill="#1A7F37" letter-spacing="0.5">SHIPPING DAILY</text>
+  </g>
+
+  <!-- Metric Tile 1: Total Contributions -->
+  <g transform="translate(24, 44)">
+    <rect width="215" height="58" rx="6" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="#0969DA">310</text>
+    <text x="14" y="44" class="label-desc" fill="#57606A">TOTAL CONTRIBUTIONS</text>
+  </g>
+
+  <!-- Metric Tile 2: Commits -->
+  <g transform="translate(255, 44)">
+    <rect width="215" height="58" rx="6" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="#1F2328">153+</text>
+    <text x="14" y="44" class="label-desc" fill="#57606A">PRODUCTION COMMITS</text>
+  </g>
+
+  <!-- Metric Tile 3: Pull Requests -->
+  <g transform="translate(24, 114)">
+    <rect width="215" height="58" rx="6" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="#8250DF">3</text>
+    <text x="14" y="44" class="label-desc" fill="#57606A">PULL REQUESTS MERGED</text>
+  </g>
+
+  <!-- Metric Tile 4: Public Repos -->
+  <g transform="translate(255, 114)">
+    <rect width="215" height="58" rx="6" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="#0969DA">14</text>
+    <text x="14" y="44" class="label-desc" fill="#57606A">ACTIVE REPOSITORIES</text>
+  </g>
+</svg>

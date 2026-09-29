@@ -18,11 +18,9 @@ def fetch_contributions_html():
         return resp.read().decode("utf-8")
 
 def parse_contributions(content):
-    # Total contributions
     total_match = re.search(r'([0-9,]+)\s+contributions\s+in the last year', content)
-    total_str = total_match.group(1) if total_match else "309"
+    total_str = total_match.group(1) if total_match else "310"
 
-    # Months header
     months = []
     month_matches = re.finditer(
         r'<td class="ContributionCalendar-label"[^>]*colspan="(\d+)"[^>]*>\s*<span class="sr-only">([^<]+)</span>\s*<span aria-hidden="true"[^>]*>([^<]+)</span>',
@@ -34,14 +32,12 @@ def parse_contributions(content):
         short_name = m.group(3).strip()
         months.append((colspan, full_name, short_name))
 
-    # Parse tooltips
     tooltips = {}
     for tm in re.finditer(r'<tool-tip[^>]*for="([^"]+)"[^>]*>(.*?)</tool-tip>', content):
         cell_id = tm.group(1)
         tip_text = html.unescape(tm.group(2).strip())
         tooltips[cell_id] = tip_text
 
-    # Cells
     cells = []
     cell_pattern = re.finditer(r'<td[^>]*class="ContributionCalendar-day"[^>]*>', content)
     for m in cell_pattern:
@@ -64,10 +60,7 @@ def parse_contributions(content):
                 "tip": tip
             })
 
-    # Sort cells by date for accurate streak calculations
     sorted_cells = sorted(cells, key=lambda x: x["date"])
-
-    # Calculate Streaks
     active_dates = set(c["date"] for c in sorted_cells if c["level"] > 0)
     
     start_dt = datetime.strptime(sorted_cells[0]["date"], "%Y-%m-%d").date()
@@ -93,10 +86,8 @@ def parse_contributions(content):
     if cur_streak > 0:
         all_streaks.append((cur_streak, cur_start, end_dt))
 
-    # Longest Streak
     longest_len, longest_start, longest_end = max(all_streaks, key=lambda x: x[0]) if all_streaks else (0, start_dt, start_dt)
     
-    # Current Streak (must touch today or yesterday)
     today = end_dt
     yesterday = today - timedelta(days=1)
     
@@ -108,13 +99,11 @@ def parse_contributions(content):
         if last_s[2] == today or last_s[2] == yesterday:
             current_len, current_start, current_end = last_s
 
-    # Format date ranges (e.g., "Aug 28 - Sep 1", "Sep 26 - Sep 29")
     def format_range(s_date, e_date):
         if s_date == e_date:
             return s_date.strftime("%b %d").replace(" 0", " ")
         return f"{s_date.strftime('%b')} {s_date.day} - {e_date.strftime('%b')} {e_date.day}"
 
-    # First active date to Present for total contributions
     first_active = min([datetime.strptime(c["date"], "%Y-%m-%d").date() for c in sorted_cells if c["level"] > 0], default=start_dt)
     total_range = f"{first_active.strftime('%b')} {first_active.day} - Present"
 
@@ -272,110 +261,225 @@ def generate_svg(total_str, months, cells, theme="dark"):
 </svg>'''
     return svg_content
 
-def generate_streak_svg(streak_data, theme="dark"):
+def generate_stats_card_svg(total_str, theme="dark"):
     is_dark = theme == "dark"
 
     if is_dark:
         bg_card = "#0D1117"
         border_card = "#30363D"
-        line_color = "#30363D"
-        text_num = "#70A5FD"
-        text_accent_num = "#BF91F3"
+        inner_bg = "#161B22"
+        inner_border = "#21262D"
+        text_title = "#38BDF8"
+        text_num = "#F0F6FC"
+        text_num_cyan = "#38BDF8"
+        text_num_purple = "#BF91F3"
         text_label = "#94A3B8"
-        text_curr_label = "#38BDF8"
-        text_date = "#38BDAE"
-        ring_color = "#38BDF8"
-        fire_color = "#F59E0B"
+        text_sub = "#7D8590"
+        badge_bg = "rgba(34, 197, 94, 0.15)"
+        badge_text = "#22C55E"
     else:
         bg_card = "#FFFFFF"
         border_card = "#D0D7DE"
-        line_color = "#D0D7DE"
-        text_num = "#0969DA"
-        text_accent_num = "#8250DF"
-        text_label = "#656D76"
-        text_curr_label = "#0969DA"
-        text_date = "#1A7F37"
-        ring_color = "#0969DA"
-        fire_color = "#D97706"
-
-    total_cnt = streak_data["total_contributions"]
-    total_range = streak_data["total_range"]
-    curr_streak = streak_data["current_streak"]
-    curr_range = streak_data["current_range"]
-    longest_streak = streak_data["longest_streak"]
-    longest_range = streak_data["longest_range"]
+        inner_bg = "#F6F8FA"
+        inner_border = "#D0D7DE"
+        text_title = "#0969DA"
+        text_num = "#1F2328"
+        text_num_cyan = "#0969DA"
+        text_num_purple = "#8250DF"
+        text_label = "#57606A"
+        text_sub = "#656D76"
+        badge_bg = "rgba(26, 127, 55, 0.12)"
+        badge_text = "#1A7F37"
 
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195">
   <defs>
     <style>
-      .num {{
-        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
+      .mono-title {{
+        font-family: 'SF Mono', 'Geist Mono', 'Fira Code', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+      }}
+      .num-val {{
+        font-family: 'Segoe UI', -apple-system, sans-serif;
+        font-size: 23px;
         font-weight: 700;
-        font-size: 28px;
-        text-anchor: middle;
       }}
-      .lbl {{
-        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        text-anchor: middle;
+      .label-desc {{
+        font-family: 'SF Mono', 'Geist Mono', monospace;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
       }}
-      .lbl-curr {{
-        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
-        font-weight: 700;
-        font-size: 14px;
-        text-anchor: middle;
+      .sub-desc {{
+        font-family: -apple-system, 'Segoe UI', sans-serif;
+        font-size: 10.5px;
       }}
-      .dt {{
-        font-family: 'Segoe UI', Ubuntu, -apple-system, sans-serif;
-        font-weight: 400;
-        font-size: 12px;
-        text-anchor: middle;
+      @keyframes pulseGlow {{
+        0%, 100% {{ opacity: 0.8; transform: scale(1); }}
+        50% {{ opacity: 1; transform: scale(1.15); }}
       }}
-      @keyframes flamePulse {{
-        0%, 100% {{ transform: scale(1); }}
-        50% {{ transform: scale(1.1); }}
-      }}
-      .flame {{
-        transform-origin: 247.5px 38px;
-        animation: flamePulse 2s ease-in-out infinite;
+      .pulse-dot {{
+        animation: pulseGlow 2s ease-in-out infinite;
+        transform-origin: center;
       }}
     </style>
   </defs>
 
-  <rect width="495" height="195" rx="6" fill="{bg_card}" stroke="{border_card}" stroke-width="1" />
+  <!-- Container Box -->
+  <rect width="495" height="195" rx="8" fill="{bg_card}" stroke="{border_card}" stroke-width="1" />
 
-  <!-- Dividers -->
-  <line x1="170" y1="40" x2="170" y2="160" stroke="{line_color}" stroke-width="1" />
-  <line x1="325" y1="40" x2="325" y2="160" stroke="{line_color}" stroke-width="1" />
+  <!-- Eyebrow Header -->
+  <text x="24" y="28" class="mono-title" fill="{text_title}">
+    TELEMETRY // DEV CONSOLE
+  </text>
 
-  <!-- Total Contributions Column -->
-  <g transform="translate(85, 0)">
-    <text x="0" y="80" class="num" fill="{text_num}">{total_cnt}</text>
-    <text x="0" y="112" class="lbl" fill="{text_label}">Total Contributions</text>
-    <text x="0" y="140" class="dt" fill="{text_date}">{total_range}</text>
+  <!-- Live Status Badge -->
+  <g transform="translate(355, 14)">
+    <rect width="118" height="20" rx="10" fill="{badge_bg}" />
+    <circle cx="12" cy="10" r="3.5" fill="{badge_text}" class="pulse-dot" />
+    <text x="22" y="14" font-family="'SF Mono', 'Geist Mono', monospace" font-size="9.5" font-weight="700" fill="{badge_text}" letter-spacing="0.5">SHIPPING DAILY</text>
   </g>
 
-  <!-- Current Streak Column -->
-  <g transform="translate(247.5, 0)">
-    <!-- Ring -->
-    <circle cx="0" cy="74" r="38" fill="none" stroke="{ring_color}" stroke-width="4.5" stroke-linecap="round" />
-    
-    <!-- Flame Icon atop ring -->
-    <g class="flame" transform="translate(-12, 18)">
-      <path fill="{fire_color}" d="M12 2C9.5 5 7 7.5 7 11a5 5 0 0 0 10 0c0-3.5-2.5-6-5-9zm0 13a3 3 0 0 1-3-3c0-1.5 1-2.8 2-3.8.4.8 1 1.5 1.5 2.2.4-.6.8-1.4.9-2.4 1 1.2 1.6 2.5 1.6 4a3 3 0 0 1-3 3z" />
-    </g>
-
-    <text x="0" y="83" class="num" fill="{text_accent_num}">{curr_streak}</text>
-    <text x="0" y="132" class="lbl-curr" fill="{text_curr_label}">Current Streak</text>
-    <text x="0" y="156" class="dt" fill="{text_date}">{curr_range}</text>
+  <!-- Metric Tile 1: Total Contributions -->
+  <g transform="translate(24, 44)">
+    <rect width="215" height="58" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="{text_num_cyan}">{total_str}</text>
+    <text x="14" y="44" class="label-desc" fill="{text_label}">TOTAL CONTRIBUTIONS</text>
   </g>
 
-  <!-- Longest Streak Column -->
-  <g transform="translate(410, 0)">
-    <text x="0" y="80" class="num" fill="{text_num}">{longest_streak}</text>
-    <text x="0" y="112" class="lbl" fill="{text_label}">Longest Streak</text>
-    <text x="0" y="140" class="dt" fill="{text_date}">{longest_range}</text>
+  <!-- Metric Tile 2: Commits -->
+  <g transform="translate(255, 44)">
+    <rect width="215" height="58" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="{text_num}">153+</text>
+    <text x="14" y="44" class="label-desc" fill="{text_label}">PRODUCTION COMMITS</text>
+  </g>
+
+  <!-- Metric Tile 3: Pull Requests -->
+  <g transform="translate(24, 114)">
+    <rect width="215" height="58" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="{text_num_purple}">3</text>
+    <text x="14" y="44" class="label-desc" fill="{text_label}">PULL REQUESTS MERGED</text>
+  </g>
+
+  <!-- Metric Tile 4: Public Repos -->
+  <g transform="translate(255, 114)">
+    <rect width="215" height="58" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <text x="14" y="28" class="num-val" fill="{text_num_cyan}">14</text>
+    <text x="14" y="44" class="label-desc" fill="{text_label}">ACTIVE REPOSITORIES</text>
+  </g>
+</svg>'''
+    return svg
+
+def generate_langs_card_svg(theme="dark"):
+    is_dark = theme == "dark"
+
+    if is_dark:
+        bg_card = "#0D1117"
+        border_card = "#30363D"
+        inner_bg = "#161B22"
+        inner_border = "#21262D"
+        text_title = "#38BDF8"
+        text_lang = "#F0F6FC"
+        text_desc = "#94A3B8"
+        bar_bg = "#21262D"
+        sub_text = "#7D8590"
+    else:
+        bg_card = "#FFFFFF"
+        border_card = "#D0D7DE"
+        inner_bg = "#F6F8FA"
+        inner_border = "#D0D7DE"
+        text_title = "#0969DA"
+        text_lang = "#1F2328"
+        text_desc = "#57606A"
+        bar_bg = "#E1E4E8"
+        sub_text = "#656D76"
+
+    # Languages data
+    # Python 65%, TypeScript 24%, JavaScript 6%, CSS 5%
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 205" width="520" height="205">
+  <defs>
+    <style>
+      .mono-header {{
+        font-family: 'SF Mono', 'Geist Mono', 'Fira Code', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+      }}
+      .lang-title {{
+        font-family: 'SF Mono', 'Geist Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+      }}
+      .lang-sub {{
+        font-family: -apple-system, 'Segoe UI', sans-serif;
+        font-size: 11px;
+      }}
+      .pct-badge {{
+        font-family: 'SF Mono', 'Geist Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+      }}
+    </style>
+  </defs>
+
+  <!-- Container Box -->
+  <rect width="520" height="205" rx="8" fill="{bg_card}" stroke="{border_card}" stroke-width="1" />
+
+  <!-- Eyebrow Title -->
+  <text x="24" y="28" class="mono-header" fill="{text_title}">
+    STACK &amp; RUNTIMES // ARCHITECTURE
+  </text>
+  <text x="496" y="28" text-anchor="end" font-family="'SF Mono', monospace" font-size="10" fill="{sub_text}" letter-spacing="1">
+    VOLUME RATIO
+  </text>
+
+  <!-- Progress Bar (Total width: 472px) -->
+  <!-- Python: 65% = 306px, TS: 24% = 113px, JS: 6% = 28px, CSS: 5% = 25px -->
+  <g transform="translate(24, 40)">
+    <rect width="472" height="8" rx="4" fill="{bar_bg}" />
+    <rect x="0" y="0" width="306" height="8" rx="4" fill="#38BDF8" />
+    <rect x="308" y="0" width="112" height="8" rx="4" fill="#818CF8" />
+    <rect x="422" y="0" width="26" height="8" rx="4" fill="#F59E0B" />
+    <rect x="450" y="0" width="22" height="8" rx="4" fill="#C084FC" />
+  </g>
+
+  <!-- 4 Language Metric Rows (2x2 Grid) -->
+
+  <!-- 1. Python -->
+  <g transform="translate(24, 66)">
+    <rect width="228" height="52" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#38BDF8" />
+    <text x="28" y="22" class="lang-title" fill="{text_lang}">Python</text>
+    <text x="28" y="38" class="lang-sub" fill="{text_desc}">FastAPI • Scripts • Data APIs</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#38BDF8">65%</text>
+  </g>
+
+  <!-- 2. TypeScript -->
+  <g transform="translate(268, 66)">
+    <rect width="228" height="52" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#818CF8" />
+    <text x="28" y="22" class="lang-title" fill="{text_lang}">TypeScript</text>
+    <text x="28" y="38" class="lang-sub" fill="{text_desc}">Strict Typing • Next.js • React</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#818CF8">24%</text>
+  </g>
+
+  <!-- 3. JavaScript -->
+  <g transform="translate(24, 130)">
+    <rect width="228" height="52" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#F59E0B" />
+    <text x="28" y="22" class="lang-title" fill="{text_lang}">JavaScript</text>
+    <text x="28" y="38" class="lang-sub" fill="{text_desc}">Node.js • Full-Stack Web Tools</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#F59E0B">6%</text>
+  </g>
+
+  <!-- 4. CSS & Systems -->
+  <g transform="translate(268, 130)">
+    <rect width="228" height="52" rx="6" fill="{inner_bg}" stroke="{inner_border}" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#C084FC" />
+    <text x="28" y="22" class="lang-title" fill="{text_lang}">Modern UI / CSS</text>
+    <text x="28" y="38" class="lang-sub" fill="{text_desc}">Tailwind • Design Systems</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#C084FC">5%</text>
   </g>
 </svg>'''
     return svg
@@ -402,7 +506,7 @@ def main():
 
     os.makedirs("assets", exist_ok=True)
 
-    # Heatmaps
+    # 1. Heatmaps
     dark_svg = generate_svg(total_str, months, cells, theme="dark")
     with open(os.path.join("assets", "github-contributions-dark.svg"), "w", encoding="utf-8") as f:
         f.write(dark_svg)
@@ -414,19 +518,31 @@ def main():
     with open(os.path.join("assets", "github-contributions.svg"), "w", encoding="utf-8") as f:
         f.write(dark_svg)
 
-    # Streaks
-    dark_streak = generate_streak_svg(streak_data, theme="dark")
-    with open(os.path.join("assets", "github-streak-dark.svg"), "w", encoding="utf-8") as f:
-        f.write(dark_streak)
+    # 2. Bespoke Stats Console Cards
+    dark_stats = generate_stats_card_svg(total_str, theme="dark")
+    with open(os.path.join("assets", "github-stats-dark.svg"), "w", encoding="utf-8") as f:
+        f.write(dark_stats)
 
-    light_streak = generate_streak_svg(streak_data, theme="light")
-    with open(os.path.join("assets", "github-streak-light.svg"), "w", encoding="utf-8") as f:
-        f.write(light_streak)
+    light_stats = generate_stats_card_svg(total_str, theme="light")
+    with open(os.path.join("assets", "github-stats-light.svg"), "w", encoding="utf-8") as f:
+        f.write(light_stats)
 
-    with open(os.path.join("assets", "github-streak.svg"), "w", encoding="utf-8") as f:
-        f.write(dark_streak)
+    with open(os.path.join("assets", "github-stats.svg"), "w", encoding="utf-8") as f:
+        f.write(dark_stats)
 
-    print("All SVGs updated successfully!")
+    # 3. Bespoke Languages & Architecture Cards
+    dark_langs = generate_langs_card_svg(theme="dark")
+    with open(os.path.join("assets", "github-langs-dark.svg"), "w", encoding="utf-8") as f:
+        f.write(dark_langs)
+
+    light_langs = generate_langs_card_svg(theme="light")
+    with open(os.path.join("assets", "github-langs-light.svg"), "w", encoding="utf-8") as f:
+        f.write(light_langs)
+
+    with open(os.path.join("assets", "github-langs.svg"), "w", encoding="utf-8") as f:
+        f.write(dark_langs)
+
+    print("All premium SVGs generated and updated successfully!")
 
 if __name__ == "__main__":
     main()

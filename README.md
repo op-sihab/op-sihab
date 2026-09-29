@@ -92,16 +92,16 @@
     <tr>
       <td>
         <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&include_all_commits=true&hide_rank=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8&border_radius=8">
-          <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&include_all_commits=true&hide_rank=true&theme=default&bg_color=FFFFFF&title_color=0969DA&text_color=24292F&icon_color=0969DA&border_color=D0D7DE&border_radius=8">
-          <img src="https://github-readme-stats-fast.vercel.app/api?username=op-sihab&show_icons=true&include_all_commits=true&hide_rank=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=94A3B8&border_radius=8" height="170" alt="GitHub Stats" />
+          <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-stats-dark.svg">
+          <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-stats-light.svg">
+          <img src="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-stats-dark.svg" height="195" alt="GitHub Stats & Telemetry" />
         </picture>
       </td>
       <td>
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&timezone=Asia/Dhaka">
           <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com/?user=op-sihab&theme=default&hide_border=true&background=FFFFFF&ring=0969DA&fire=F59E0B&currStreakLabel=0969DA&timezone=Asia/Dhaka">
-          <img src="https://streak-stats.demolab.com/?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&timezone=Asia/Dhaka" height="170" alt="GitHub Streak" />
+          <img src="https://streak-stats.demolab.com/?user=op-sihab&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=F59E0B&currStreakLabel=38BDF8&timezone=Asia/Dhaka" height="195" alt="GitHub Streak" />
         </picture>
       </td>
     </tr>
@@ -110,9 +110,9 @@
   <br/>
 
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&hide=html,powershell,roff&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8&border_radius=8">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&hide=html,powershell,roff&theme=default&bg_color=FFFFFF&title_color=0969DA&text_color=24292F&border_color=D0D7DE&border_radius=8">
-    <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=op-sihab&layout=compact&hide=html,powershell,roff&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=94A3B8&border_radius=8" width="400" alt="Top Languages" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-langs-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-langs-light.svg">
+    <img src="https://raw.githubusercontent.com/op-sihab/op-sihab/main/assets/github-langs-dark.svg" width="520" alt="Core Languages & Architecture" />
   </picture>
 
 </div>

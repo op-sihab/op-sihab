@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 205" width="520" height="205">
+  <defs>
+    <style>
+      .mono-header {
+        font-family: 'SF Mono', 'Geist Mono', 'Fira Code', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+      }
+      .lang-title {
+        font-family: 'SF Mono', 'Geist Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .lang-sub {
+        font-family: -apple-system, 'Segoe UI', sans-serif;
+        font-size: 11px;
+      }
+      .pct-badge {
+        font-family: 'SF Mono', 'Geist Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+
+  <!-- Container Box -->
+  <rect width="520" height="205" rx="8" fill="#0D1117" stroke="#30363D" stroke-width="1" />
+
+  <!-- Eyebrow Title -->
+  <text x="24" y="28" class="mono-header" fill="#38BDF8">
+    STACK &amp; RUNTIMES // ARCHITECTURE
+  </text>
+  <text x="496" y="28" text-anchor="end" font-family="'SF Mono', monospace" font-size="10" fill="#7D8590" letter-spacing="1">
+    VOLUME RATIO
+  </text>
+
+  <!-- Progress Bar (Total width: 472px) -->
+  <!-- Python: 65% = 306px, TS: 24% = 113px, JS: 6% = 28px, CSS: 5% = 25px -->
+  <g transform="translate(24, 40)">
+    <rect width="472" height="8" rx="4" fill="#21262D" />
+    <rect x="0" y="0" width="306" height="8" rx="4" fill="#38BDF8" />
+    <rect x="308" y="0" width="112" height="8" rx="4" fill="#818CF8" />
+    <rect x="422" y="0" width="26" height="8" rx="4" fill="#F59E0B" />
+    <rect x="450" y="0" width="22" height="8" rx="4" fill="#C084FC" />
+  </g>
+
+  <!-- 4 Language Metric Rows (2x2 Grid) -->
+
+  <!-- 1. Python -->
+  <g transform="translate(24, 66)">
+    <rect width="228" height="52" rx="6" fill="#161B22" stroke="#21262D" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#38BDF8" />
+    <text x="28" y="22" class="lang-title" fill="#F0F6FC">Python</text>
+    <text x="28" y="38" class="lang-sub" fill="#94A3B8">FastAPI • Scripts • Data APIs</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#38BDF8">65%</text>
+  </g>
+
+  <!-- 2. TypeScript -->
+  <g transform="translate(268, 66)">
+    <rect width="228" height="52" rx="6" fill="#161B22" stroke="#21262D" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#818CF8" />
+    <text x="28" y="22" class="lang-title" fill="#F0F6FC">TypeScript</text>
+    <text x="28" y="38" class="lang-sub" fill="#94A3B8">Strict Typing • Next.js • React</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#818CF8">24%</text>
+  </g>
+
+  <!-- 3. JavaScript -->
+  <g transform="translate(24, 130)">
+    <rect width="228" height="52" rx="6" fill="#161B22" stroke="#21262D" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#F59E0B" />
+    <text x="28" y="22" class="lang-title" fill="#F0F6FC">JavaScript</text>
+    <text x="28" y="38" class="lang-sub" fill="#94A3B8">Node.js • Full-Stack Web Tools</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#F59E0B">6%</text>
+  </g>
+
+  <!-- 4. CSS & Systems -->
+  <g transform="translate(268, 130)">
+    <rect width="228" height="52" rx="6" fill="#161B22" stroke="#21262D" stroke-width="1" />
+    <circle cx="16" cy="26" r="5" fill="#C084FC" />
+    <text x="28" y="22" class="lang-title" fill="#F0F6FC">Modern UI / CSS</text>
+    <text x="28" y="38" class="lang-sub" fill="#94A3B8">Tailwind • Design Systems</text>
+    <text x="214" y="25" text-anchor="end" class="pct-badge" fill="#C084FC">5%</text>
+  </g>
+</svg>
