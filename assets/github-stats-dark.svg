@@ -51,7 +51,7 @@
   <!-- Metric Tile 1: Total Contributions -->
   <g transform="translate(24, 44)">
     <rect width="215" height="58" rx="6" fill="#161B22" stroke="#21262D" stroke-width="1" />
-    <text x="14" y="28" class="num-val" fill="#38BDF8">316</text>
+    <text x="14" y="28" class="num-val" fill="#38BDF8">317</text>
     <text x="14" y="44" class="label-desc" fill="#94A3B8">TOTAL CONTRIBUTIONS</text>
   </g>
 
